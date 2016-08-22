@@ -1,85 +1,73 @@
-#include<stdio.h>
-#include<string.h>
-
-void filter()
-{
-	char ch;
-	FILE *f1,*f2;
-	f1=fopen("text.txt","r");
-	f2=fopen("text_filtered.txt","w");
-	while((ch=fgetc(f1))!=EOF)
-	{
-		if((ch>='A'&&ch<='Z'))
-			fprintf(f2,"%c",ch);
-		else if(ch>='a'&&ch<='z')
-			fprintf(f2,"%c",ch-32);
-	}
-	fclose(f1);
-	fclose(f2);
-
-	printf("\nPlain text Filtered\n");
-}
+#include <stdio.h>
+#include <string.h>
 
 int encrypt_vigenere(char key[])
 {
 	char ch;
-	int i=0,len;
+	int i, len;
 	len = strlen(key);
-	while(key[i])
+
+	i = 0;
+	FILE *fin, *fout;
+	fin = fopen("plain2.txt", "r");
+	fout = fopen("cipher2.txt", "w");
+
+	printf("\nEncrypted text:\n");
+	while(!feof(fin))
 	{
-		key[i]=toupper(key[i]);
-		i++;
+		ch = fgetc(fin);
+		if(ch >= 'a' && ch <= 'z')
+			ch = ch - 'a' + 'A';
+		if(ch >= 'A' && ch <= 'Z')
+		{
+			ch = ch + key[i] - 'A';
+			if(ch > 'Z')
+				ch = ch - 26;
+			fprintf(fout, "%c", ch);
+			printf("%c", ch);
+			i = (i+1) % len;
+		}
 	}
-	puts(key);
-	i=0;
-	FILE *f1,*f2;
-	f1=fopen("text_filtered.txt","r");
-	f2=fopen("text_encrypted.txt","w");
-	while((ch=fgetc(f1))!=EOF)
-	{
-		ch=ch+key[i]-65;
-		if(ch>90)
-			ch=ch-26;
-		fprintf(f2,"%c",ch);
-		if(i==len-1)
-			i=0;
-		else
-			i++;
-	}
-	fclose(f1);
-	fclose(f2);
-	printf("\nPlain text encrypted\n");
+
+	fprintf(fout,"\n");
+	printf("\n");
+	fclose(fin);
+	fclose(fout);
 	return 0;
 }
 
 int decrypt_vigenere(char key[])
 {
 	char ch;
-	int i=0,len;
+	int i, len;
 	len = strlen(key);
-	while(key[i])
+
+	i = 0;
+	FILE *fin, *fout;
+	fin = fopen("cipher2.txt", "r");
+	fout = fopen("decrypted2.txt", "w");
+
+	printf("\nDecrypted text:\n");
+	while(!feof(fin))
 	{
-		key[i]=toupper(key[i]);
-		i++;
+		ch = fgetc(fin);
+		if(ch >= 'a' && ch <= 'z')
+			ch = ch - 'a' + 'A';
+		if(ch >= 'A' && ch <= 'Z')
+		{
+			ch = ch - key[i] + 'A';
+			if(ch < 'A')
+				ch = ch + 26;
+			fprintf(fout, "%c", ch);
+			printf("%c", ch);
+			i = (i+1) % len;
+		}
 	}
-	i=0;
-	FILE *f1,*f2;
-	f1=fopen("text_encrypted.txt","r");
-	f2=fopen("text_decrypted.txt","w");
-	while((ch=fgetc(f1))!=EOF)
-	{
-		ch=ch-key[i]+65;
-		if(ch<65)
-			ch=ch+26;
-		fprintf(f2,"%c",ch);
-		if(i==len-1)
-			i=0;
-		else
-			i++;
-	}
-	fclose(f1);
-	fclose(f2);
-	printf("\nCipher text decrypted\n");
+
+	fprintf(fout,"\n");
+	printf("\n");
+	fclose(fin);
+	fclose(fout);
 	return 0;
 }
 
@@ -124,15 +112,6 @@ int encrypt_columnar(char key[])
 		}
 	}
 	while(j != key_length) {mat[i][j++] = 'X';}
-	
-/*	for(i = 0;i < nrows;i++)					//To be commented later!!!
-	{
-		for(j = 0;j < key_length;j++)
-		{
-			printf("%c",mat[i][j]);
-		}
-		printf("\n");
-	}*/
 
 	int jumbleOrder[key_length], orderNo = 1;
 
@@ -145,10 +124,6 @@ int encrypt_columnar(char key[])
 		}
 	}
 	
-/*	for(j = 0;j < key_length;j++)				//To be commented later!!!
-	{
-		printf("%d",jumbleOrder[j]);
-	}*/
 	printf("\n");
 
 	printf("Encrypted text:\n");
@@ -170,7 +145,6 @@ int encrypt_columnar(char key[])
 		}
 	}
 
-//	printf("\n%d\t%d\t%d\n",plaintxt_length,key_length,nrows);
 	fprintf(fout,"\n");
 	printf("\n");
 	fclose(fin);
@@ -219,15 +193,6 @@ int decrypt_columnar(char key[])
 			if(i >= nrows) {j++;i=0;}
 		}
 	}
-	
-/*	for(i = 0;i < nrows;i++)					//To be commented later!!!
-	{
-		for(j = 0;j < key_length;j++)
-		{
-			printf("%c",mat[i][j]);
-		}
-		printf("\n");
-	}*/
 
 	int jumbleOrder[key_length], orderNo = 1;
 
@@ -239,11 +204,7 @@ int decrypt_columnar(char key[])
 				jumbleOrder[i] = orderNo++;
 		}
 	}
-	
-/*	for(j = 0;j < key_length;j++)				//To be commented later!!!
-	{
-		printf("%d",jumbleOrder[j]);
-	}*/
+
 	printf("\n");
 
 	for(orderNo = 1;orderNo <= key_length;++orderNo)
@@ -271,7 +232,6 @@ int decrypt_columnar(char key[])
 		}
 	}
 
-//	printf("\n%d\t%d\t%d\n",plaintxt_length,key_length,nrows);
 	fprintf(fout,"\n");
 	printf("\n");
 	fclose(fin);
@@ -313,15 +273,15 @@ top:printf("\n------------------------------------------------------------\n");
 			goto top;
 			break;
 		case 3:
-			printf("\nInput will be taken from 'plain.txt'.\n");
-			printf("Enter key for encryption: ");
+			printf("\nInput will be taken from 'plain2.txt'.\n");
+			printf("Enter key for encryption(CAPS): ");
 			scanf("%s",key);
 			encrypt_vigenere(key);
 			goto top;
 			break;
 		case 4:
-			printf("\nInput will be taken from 'cipher.txt'.\n");
-			printf("Enter key for decryption: ");
+			printf("\nInput will be taken from 'cipher2.txt'.\n");
+			printf("Enter key for decryption(CAPS): ");
 			scanf("%s",key);
 			decrypt_vigenere(key);
 			goto top;
