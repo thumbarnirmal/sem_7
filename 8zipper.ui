@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>736</width>
+    <height>541</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>8 Zipper</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>711</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QListView" name="listView">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>30</y>
+      <width>511</width>
+      <height>431</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QListView" name="listView_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>201</width>
+      <height>431</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QScrollBar" name="verticalScrollBar">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>30</y>
+      <width>16</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>736</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNew_Archive"/>
+    <addaction name="actionOpen"/>
+    <addaction name="actionExtract_Files"/>
+    <addaction name="separator"/>
+    <addaction name="actionSave_As"/>
+    <addaction name="actionTest_Integrity"/>
+    <addaction name="actionProperties"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionCut"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionPaste"/>
+    <addaction name="separator"/>
+    <addaction name="actionAdd_Files"/>
+    <addaction name="actionRename"/>
+    <addaction name="actionDelete_Files"/>
+    <addaction name="separator"/>
+    <addaction name="actionSelect_All"/>
+    <addaction name="actionDeselect_All"/>
+    <addaction name="actionFind"/>
+    <addaction name="separator"/>
+    <addaction name="actionSet_Password"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <widget class="QMenu" name="menuSort_by">
+     <property name="title">
+      <string>Sort by</string>
+     </property>
+     <addaction name="actionName"/>
+     <addaction name="actionDate"/>
+     <addaction name="actionType"/>
+     <addaction name="actionSize"/>
+     <addaction name="actionUnsorted"/>
+    </widget>
+    <addaction name="actionSidebar"/>
+    <addaction name="separator"/>
+    <addaction name="actionLarge_Icons"/>
+    <addaction name="actionSmall_Icons"/>
+    <addaction name="actionList"/>
+    <addaction name="actionDetails"/>
+    <addaction name="separator"/>
+    <addaction name="menuSort_by"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionCheck_for_Updates"/>
+    <addaction name="actionFAQ"/>
+    <addaction name="actionOnline_Support"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionBack"/>
+   <addaction name="actionForward"/>
+   <addaction name="actionHome"/>
+   <addaction name="actionExtract_Files"/>
+   <addaction name="actionAddFiles"/>
+   <addaction name="actionSearch"/>
+   <addaction name="actionDelete_Files"/>
+   <addaction name="actionTest_Integrity"/>
+   <addaction name="actionProperties"/>
+  </widget>
+  <action name="actionFAQ">
+   <property name="text">
+    <string>FAQ</string>
+   </property>
+  </action>
+  <action name="actionCheck_for_Updates">
+   <property name="text">
+    <string>Check for Updates</string>
+   </property>
+  </action>
+  <action name="actionOnline_Support">
+   <property name="text">
+    <string>Online Support</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionSidebar">
+   <property name="text">
+    <string>Sidebar</string>
+   </property>
+  </action>
+  <action name="actionLarge_Icons">
+   <property name="text">
+    <string>Large Icons</string>
+   </property>
+  </action>
+  <action name="actionSmall_Icons">
+   <property name="text">
+    <string>Small Icons</string>
+   </property>
+  </action>
+  <action name="actionList">
+   <property name="text">
+    <string>List</string>
+   </property>
+  </action>
+  <action name="actionDetails">
+   <property name="text">
+    <string>Details</string>
+   </property>
+  </action>
+  <action name="actionName">
+   <property name="text">
+    <string>Name</string>
+   </property>
+  </action>
+  <action name="actionDate">
+   <property name="text">
+    <string>Date</string>
+   </property>
+  </action>
+  <action name="actionType">
+   <property name="text">
+    <string>Type</string>
+   </property>
+  </action>
+  <action name="actionSize">
+   <property name="text">
+    <string>Size</string>
+   </property>
+  </action>
+  <action name="actionUnsorted">
+   <property name="text">
+    <string>Unsorted</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="text">
+    <string>Cut</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="text">
+    <string>Copy</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="text">
+    <string>Paste</string>
+   </property>
+  </action>
+  <action name="actionAdd_Files">
+   <property name="text">
+    <string>Add Files</string>
+   </property>
+   <property name="iconText">
+    <string>Add Files</string>
+   </property>
+   <property name="toolTip">
+    <string>Add Files</string>
+   </property>
+  </action>
+  <action name="actionRename">
+   <property name="text">
+    <string>Rename...</string>
+   </property>
+  </action>
+  <action name="actionDelete_Files">
+   <property name="text">
+    <string>Delete Files...</string>
+   </property>
+   <property name="iconText">
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionSelect_All">
+   <property name="text">
+    <string>Select All</string>
+   </property>
+  </action>
+  <action name="actionDeselect_All">
+   <property name="text">
+    <string>Deselect All</string>
+   </property>
+  </action>
+  <action name="actionFind">
+   <property name="text">
+    <string>Find</string>
+   </property>
+  </action>
+  <action name="actionSet_Password">
+   <property name="text">
+    <string>Set Password</string>
+   </property>
+  </action>
+  <action name="actionNew_Archive">
+   <property name="text">
+    <string>New Archive...</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open...</string>
+   </property>
+  </action>
+  <action name="actionExtract_Files">
+   <property name="text">
+    <string>Extract</string>
+   </property>
+  </action>
+  <action name="actionSave_As">
+   <property name="text">
+    <string>Save As...</string>
+   </property>
+  </action>
+  <action name="actionTest_Integrity">
+   <property name="text">
+    <string>Test Integrity</string>
+   </property>
+  </action>
+  <action name="actionProperties">
+   <property name="text">
+    <string>Properties</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionAddFiles">
+   <property name="text">
+    <string>Add Files</string>
+   </property>
+   <property name="iconText">
+    <string>Add</string>
+   </property>
+   <property name="toolTip">
+    <string>Add Files</string>
+   </property>
+  </action>
+  <action name="actionSearch">
+   <property name="text">
+    <string>Search</string>
+   </property>
+   <property name="toolTip">
+    <string>Search</string>
+   </property>
+  </action>
+  <action name="actionBack">
+   <property name="text">
+    <string>&lt;</string>
+   </property>
+   <property name="toolTip">
+    <string>Back</string>
+   </property>
+  </action>
+  <action name="actionForward">
+   <property name="text">
+    <string>&gt;</string>
+   </property>
+   <property name="toolTip">
+    <string>Forward</string>
+   </property>
+   <property name="softKeyRole">
+    <enum>QAction::NoSoftKey</enum>
+   </property>
+  </action>
+  <action name="actionHome">
+   <property name="text">
+    <string>⌂</string>
+   </property>
+   <property name="toolTip">
+    <string>Home</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
